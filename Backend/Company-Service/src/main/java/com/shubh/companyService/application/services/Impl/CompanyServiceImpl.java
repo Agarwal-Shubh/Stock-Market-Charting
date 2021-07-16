@@ -1,14 +1,15 @@
-package com.shubh.CompanyServiceApp.application.services.Impl;
+package com.shubh.companyService.application.services.Impl;
 
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.Service;
 
-import com.shubh.CompanyServiceApp.application.dao.*;
-import com.shubh.CompanyServiceApp.application.dto.*;
-import com.shubh.CompanyServiceApp.application.models.*;
-import com.shubh.CompanyServiceApp.application.mapper.*;
+import com.shubh.companyService.application.dao.*;
+import com.shubh.companyService.application.dto.*;
+import com.shubh.companyService.application.mapper.*;
+import com.shubh.companyService.application.models.*;
+import com.shubh.companyService.application.services.CompanyService;
+
 import java.util.*;
-import com.shubh.CompanyServiceApp.application.services.CompanyService;
 
 @Service
 public class CompanyServiceImpl implements CompanyService {

@@ -1,12 +1,14 @@
-package com.shubh.CompanyServiceApp.application.controller;
+package com.shubh.companyService.application.controller;
 
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.shubh.CompanyServiceApp.application.services.*;
-import com.shubh.CompanyServiceApp.application.dto.*;
+
+import com.shubh.companyService.application.dto.*;
+import com.shubh.companyService.application.services.*;
+
 import java.util.*;
 @RestController
 @RequestMapping("/companyService")

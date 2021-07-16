@@ -1,4 +1,4 @@
-package com.shubh.CompanyServiceApp.application.mapper;
+package com.shubh.companyService.application.mapper;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,8 +8,8 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.stereotype.Component;
 
-import com.shubh.CompanyServiceApp.application.dto.*;
-import com.shubh.CompanyServiceApp.application.models.*;
+import com.shubh.companyService.application.dto.*;
+import com.shubh.companyService.application.models.*;
 
 @Component
 public class StockPriceMapper 

@@ -1,4 +1,4 @@
-package com.shubh.CompanyServiceApp.application.dto;
+package com.shubh.companyService.application.dto;
 
 import lombok.*;
 

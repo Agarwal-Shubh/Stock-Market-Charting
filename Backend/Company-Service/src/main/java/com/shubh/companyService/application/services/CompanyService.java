@@ -1,7 +1,8 @@
-package com.shubh.CompanyServiceApp.application.services;
+package com.shubh.companyService.application.services;
 
 import java.util.*;
-import com.shubh.CompanyServiceApp.application.dto.*;
+
+import com.shubh.companyService.application.dto.*;
 
 public interface CompanyService {
 	public List<CompanyDTO> getCompanies();

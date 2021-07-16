@@ -1,6 +1,4 @@
-package com.shubh.CompanyServiceApp.application.models;
-
-import java.util.Date;
+package com.shubh.companyService.application.models;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -12,15 +10,14 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(collection="Ipo")
-public class Ipo 
+@Document(collection="StockPrice")
+public class StockPrice 
 {
 	@Id
 	private String id;
-	private String companyName;
+	private String companyCode;
 	private String stockExchangeName;
 	private double price;
-	private int shares;
-	private Date openDateTime;
-	private String remarks;
+	private String date;
+	private String time;
 }

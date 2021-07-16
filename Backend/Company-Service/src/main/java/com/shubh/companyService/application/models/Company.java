@@ -1,4 +1,4 @@
-package com.shubh.CompanyServiceApp.application.models;
+package com.shubh.companyService.application.models;
 
 import java.util.ArrayList;
 import java.util.List;

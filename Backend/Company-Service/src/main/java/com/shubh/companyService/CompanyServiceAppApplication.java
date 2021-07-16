@@ -1,4 +1,4 @@
-package com.shubh.CompanyServiceApp;
+package com.shubh.companyService;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
