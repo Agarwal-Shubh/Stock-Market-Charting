@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Document
-class Stock 
+public class StockPrice 
 {
 	@Id
 	private String id;
