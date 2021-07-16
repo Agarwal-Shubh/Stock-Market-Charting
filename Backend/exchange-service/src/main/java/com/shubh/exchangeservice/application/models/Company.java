@@ -1,6 +1,7 @@
 package com.shubh.exchangeservice.application.models;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.*;
@@ -14,7 +15,7 @@ import lombok.*;
 @Document(collection="Company")
 public class Company {
 	@Id
-	private ObjectId id;
+	private UUID _id;
 
 	private String name;
 	private double turnover;
