@@ -1,5 +1,4 @@
-package com.shubh.exchangeservice.application.models;
-
+package com.shubh.exchangeservice.application.dto;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -13,18 +12,16 @@ import lombok.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(collection="StockExchange")
-public class StockExchange {
-	@Id
-	private UUID _id;
+public class StockExchangeDTO {
 	
+	private UUID _id;
 	private String Name;
 	
 	private String brief;
 	
 	private String remarks;
-	
-	@DBRef
-	private List<Address> address = new ArrayList<>();
-	
+
+	public String getId() {
+		return _id.toString();
+	}	
 }

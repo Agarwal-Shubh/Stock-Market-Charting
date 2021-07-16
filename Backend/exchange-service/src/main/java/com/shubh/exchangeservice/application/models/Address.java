@@ -1,5 +1,4 @@
 package com.shubh.exchangeservice.application.models;
-
 import java.util.UUID;
 
 import org.bson.types.ObjectId;
@@ -11,14 +10,20 @@ import lombok.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(collection="StockCode")
-public class StockCode {
+@Document(collection="Address")
+public class Address {
 	@Id
 	private UUID _id;
 	
-	@DBRef
-	private StockExchange stockExchange;
+	private String buildingno;
 	
-	@DBRef
-	private Company company;
+	private String locality;
+	
+	private String city;
+	
+	private String state;
+	
+	private String country;
+	
+	private int pincode;
 }

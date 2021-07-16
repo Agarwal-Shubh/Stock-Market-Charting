@@ -1,5 +1,4 @@
 package com.shubh.exchangeservice.application.models;
-
 import java.util.UUID;
 
 import org.bson.types.ObjectId;
@@ -11,14 +10,12 @@ import lombok.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(collection="StockCode")
-public class StockCode {
+@Document(collection="Sector")
+public class Sector {
 	@Id
 	private UUID _id;
 	
-	@DBRef
-	private StockExchange stockExchange;
+	private String name;
 	
-	@DBRef
-	private Company company;
+	private String brief;
 }
