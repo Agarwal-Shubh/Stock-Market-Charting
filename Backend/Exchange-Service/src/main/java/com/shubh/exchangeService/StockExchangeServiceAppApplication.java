@@ -1,4 +1,4 @@
-package com.shubh.StockExchangeServiceApp;
+package com.shubh.exchangeService;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
