@@ -1,4 +1,6 @@
 package com.shubh.exchangeservice.application.models;
+import java.util.UUID;
+
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.*;
 import org.springframework.data.mongodb.core.mapping.*;
@@ -11,7 +13,7 @@ import lombok.*;
 @Document(collection="Address")
 public class Address {
 	@Id
-	private ObjectId id;
+	private UUID _id;
 	
 	private String buildingno;
 	

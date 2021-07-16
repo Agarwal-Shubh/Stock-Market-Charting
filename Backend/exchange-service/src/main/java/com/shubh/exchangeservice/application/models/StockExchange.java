@@ -2,6 +2,7 @@ package com.shubh.exchangeservice.application.models;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.*;
@@ -15,7 +16,7 @@ import lombok.*;
 @Document(collection="StockExchange")
 public class StockExchange {
 	@Id
-	private ObjectId id;
+	private UUID _id;
 	
 	private String Name;
 	
