@@ -1,7 +1,4 @@
 package com.shubh.exchangeservice.application.models;
-
-import java.util.List;
-
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.*;
 import org.springframework.data.mongodb.core.mapping.*;
@@ -11,17 +8,20 @@ import lombok.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(collection="Company")
-public class Company {
+@Document(collection="Address")
+public class Address {
 	@Id
 	private ObjectId id;
-
-	private String name;
-	private double turnover;
-	private String ceo;
-	private List<String> bod;
-	private String description;
 	
-	@DBRef
-	private Sector sector;
+	private String buildingno;
+	
+	private String locality;
+	
+	private String city;
+	
+	private String state;
+	
+	private String country;
+	
+	private int pincode;
 }
