@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Document
+@Document(collection="StockPrice")
 public class StockPrice 
 {
 	@Id
