@@ -16,5 +16,5 @@ public interface CompanyService {
 	public Company addIpoToCompany(String companyName, Ipo Ipo);
 	public List<Ipo> getCompanyIpoDetails(String id);
 	public Company addStockPriceToCompany(String companyCode, StockPrice stockPrice);
-	public List<StockPrice> getStockPrices(String companyName);
+	public List<StockPrice> getStockPrices(String companyId);
 }

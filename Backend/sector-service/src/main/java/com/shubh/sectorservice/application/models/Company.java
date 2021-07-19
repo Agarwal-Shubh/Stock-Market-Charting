@@ -21,6 +21,7 @@ public class Company {
 	private String name;
 	private double turnover;
 	private String ceo;
+	private String code;
 	private List<String> bod;
 	private String description;
 	private String sectorName;
