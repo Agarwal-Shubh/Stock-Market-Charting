@@ -29,21 +29,6 @@ public class StockExchange {
 	private List<Company> companies = new ArrayList<>();
 	
 	@DBRef
-	private List<Address> address = new ArrayList<>();
-	
-	public String getId() {
-		return this.id;
-	}
-
-	public List<Company> getCompanies() {
-		return this.companies;
-	}
-	
-	public void StockExchange(String name,String brief,String remarks) {
-		this.name=name;
-		this.brief=brief;
-		this.remarks=remarks;
-	}
-	
+	private List<Address> address = new ArrayList<>();	
 	
 }

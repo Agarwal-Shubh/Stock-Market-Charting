@@ -23,7 +23,5 @@ public class Company {
 	private String ceo;
 	private List<String> bod;
 	private String description;
-	
-	@DBRef
-	private Sector sector;
+
 }

@@ -24,6 +24,4 @@ public class Company {
 	private List<String> bod;
 	private String description;
 	
-	@DBRef
-	private Sector sector;
 }
