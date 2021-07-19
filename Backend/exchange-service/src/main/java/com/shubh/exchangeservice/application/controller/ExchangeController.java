@@ -67,11 +67,11 @@ public class ExchangeController
 		return ResponseEntity.ok(companies);
 	}
 	
-	@PostMapping(path="/{exchangeId}/addCompany")
-	public ResponseEntity<StockExchange> addCompanyToExchange(@PathVariable String exchangeId, @RequestBody Company company) throws Exception{
-		StockExchange stockExchange = exchangeService.addCompanyToStockExchange(exchangeId, company);
+	@PostMapping(path="/{exchangeName}/addCompany")
+	public ResponseEntity<StockExchange> addCompanyToExchange(@PathVariable String exchangeName, @RequestBody Company company) throws Exception{
+		StockExchange stockExchange = exchangeService.addCompanyToStockExchange(exchangeName, company);
 		if(stockExchange==null) {
-			throw new Exception("Stock Exchange not found for Id: "+exchangeId);
+			throw new Exception("Stock Exchange not found for : "+exchangeName);
 		}
 		
 		return ResponseEntity.ok(stockExchange);

@@ -67,12 +67,12 @@ public class ExchangeServiceImpl implements ExchangeService{
 			}
 
 	@Override
-	public StockExchange addCompanyToStockExchange(String exchangeId, Company company) {
-		Optional<StockExchange> stockExchange = stockExchangeRepository.findById(exchangeId);
+	public StockExchange addCompanyToStockExchange(String exchangeName, Company company) {
+		StockExchange stockExchange = stockExchangeRepository.findByName(exchangeName);
 		if(stockExchange == null)
 			return null;
-		stockExchange.get().getCompanies().add(company);
-		StockExchange stockExchangeUpdated = stockExchangeRepository.save(stockExchange.get());
+		stockExchange.getCompanies().add(company);
+		StockExchange stockExchangeUpdated = stockExchangeRepository.save(stockExchange);
 		return stockExchangeUpdated;
 	}
 

@@ -51,12 +51,12 @@ public class SectorServiceImpl implements SectorService{
 	}
 
 	@Override
-	public Sector addCompanyToSector(String sectorId, Company Company) {
-		Optional<Sector> sector = sectorRepository.findById(sectorId);
+	public Sector addCompanyToSector(String sectorName, Company Company) {
+		Sector sector = sectorRepository.findByName(sectorName);
 		if(sector == null)
 			return null;
-		sector.get().getCompanies().add(Company);
-		Sector Sector = sectorRepository.save(sector.get());
+		sector.getCompanies().add(Company);
+		Sector Sector = sectorRepository.save(sector);
 		return Sector;
 	}
 

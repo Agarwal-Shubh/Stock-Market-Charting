@@ -1,5 +1,6 @@
 package com.shubh.companyservice.application.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
@@ -24,8 +25,12 @@ public class Company
 	private String ceo;
 	private List<String> bod;
 	private String description;
+	private String sectorName;
+	private List<String> exchangeNames;
 	
 	@DBRef
-	private Sector sector;
+	private List<Ipo> ipos = new ArrayList<>();
 
+	@DBRef
+	private List<StockPrice> stockPrices = new ArrayList<>();
 }

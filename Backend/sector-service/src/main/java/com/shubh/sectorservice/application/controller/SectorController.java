@@ -74,13 +74,13 @@ public class SectorController {
 	}
 	
 
-	@PostMapping(path = "/{sectorId}/companies")
-	public void addCompanyToSector(@PathVariable String sectorId, @RequestBody Company company)
+	@PostMapping(path = "/{sectorName}/companies")
+	public void addCompanyToSector(@PathVariable String sectorName, @RequestBody Company company)
 			throws Exception 
 	{
-		Sector Sector = sectorService.addCompanyToSector(sectorId, company);
+		Sector Sector = sectorService.addCompanyToSector(sectorName, company);
 		if(Sector == null) {
-			throw new Exception("Sector not found with name : " + sectorId);
+			throw new Exception("Sector not found with name : " + sectorName);
 		}
 	}	
 	

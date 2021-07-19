@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.shubh.companyservice.application.models.Company;
 
-@FeignClient(value="exchange-service",url="http://localhost:8085")
-public interface ExchangeClient {
-	@PostMapping("/exchanges/{exchangeName}/addCompany")
-	public void addCompanyToStockExchange(@PathVariable String exchangeName, @RequestBody Company company);
+@FeignClient(value="sector-service",url="http://localhost:8090")
+public interface SectorClient {
+	@PostMapping("/sectors/{sectorName}/companies")
+	public void addCompanyToSector(@PathVariable String sectorName, @RequestBody Company company);
 }

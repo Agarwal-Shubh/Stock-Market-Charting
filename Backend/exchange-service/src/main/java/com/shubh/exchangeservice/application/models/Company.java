@@ -23,5 +23,6 @@ public class Company {
 	private String ceo;
 	private List<String> bod;
 	private String description;
-	
+	private String sectorName;
+	private List<String> exchangeNames;
 }

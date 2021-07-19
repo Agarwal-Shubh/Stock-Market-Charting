@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.shubh.companyservice.application.dao.CompanyRepository;
+import com.shubh.companyservice.application.feignclient.ExchangeClient;
+import com.shubh.companyservice.application.feignclient.SectorClient;
 import com.shubh.companyservice.application.models.Company;
 import com.shubh.companyservice.application.models.Ipo;
 import com.shubh.companyservice.application.models.StockPrice;
@@ -16,7 +18,12 @@ import com.shubh.companyservice.application.services.CompanyService;
 public class CompanyServiceImpl implements CompanyService {
 	@Autowired
 	private CompanyRepository companyRepository;
-
+	
+	@Autowired
+	private SectorClient sectorClient;
+	
+	@Autowired
+	private ExchangeClient exchangeClient;
 
 	
 	@Override
@@ -33,6 +40,12 @@ public class CompanyServiceImpl implements CompanyService {
 	public Company addCompany(Company Company) 
 	{
 		Company = companyRepository.save(Company);
+
+		sectorClient.addCompanyToSector(Company.getSectorName(), Company);
+		List<String> stockExchangeNames = Company.getExchangeNames();
+		for(String exchange: stockExchangeNames) {
+			exchangeClient.addCompanyToStockExchange(exchange, Company);
+		}
 		return Company;
 	}
 
@@ -52,14 +65,13 @@ public class CompanyServiceImpl implements CompanyService {
 
 	@Override
 	public Company editCompany(Company Company) {
-		// TODO Auto-generated method stub
-		return null;
+		Company = companyRepository.save(Company);
+		return Company;
 	}
 
 	@Override
 	public void deleteCompany(String id) {
-		// TODO Auto-generated method stub
-		
+		companyRepository.deleteById(id);
 	}
 
 	@Override

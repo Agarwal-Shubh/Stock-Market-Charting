@@ -11,5 +11,5 @@ public interface SectorService {
 	public Sector findById(String id);
 	public void deleteById(String id);
 	public List<Company> getCompanies(String id);
-	public Sector addCompanyToSector(String sectorId, Company Company);
+	public Sector addCompanyToSector(String sectorName, Company Company);
 }
