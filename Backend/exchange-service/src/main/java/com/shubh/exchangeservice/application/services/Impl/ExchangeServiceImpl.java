@@ -6,11 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.shubh.exchangeservice.application.dao.CompanyRepository;
 import com.shubh.exchangeservice.application.dao.StockExchangeRepository;
-import com.shubh.exchangeservice.application.dto.CompanyDTO;
-import com.shubh.exchangeservice.application.dto.StockExchangeDTO;
-import com.shubh.exchangeservice.application.mapper.CompanyMapper;
-import com.shubh.exchangeservice.application.mapper.StockExchangeMapper;
+import com.shubh.exchangeservice.application.models.Company;
 import com.shubh.exchangeservice.application.models.StockExchange;
 import com.shubh.exchangeservice.application.services.ExchangeService;
 
@@ -22,60 +20,60 @@ public class ExchangeServiceImpl implements ExchangeService{
 	private StockExchangeRepository stockExchangeRepository;
 	
 	@Autowired
-	private StockExchangeMapper stockExchangeMapper;
-	
-	@Autowired
-	private CompanyMapper companyMapper;
+	private CompanyRepository companyRepository;
 	
 	@Override
-	public List<StockExchangeDTO> getStockExchangesList() 
+	public List<StockExchange> getStockExchangesList() 
 	{
 		List<StockExchange> stockExchanges = stockExchangeRepository.findAll();
-		return stockExchangeMapper.toStockExchangeDtos(stockExchanges);
+		return stockExchanges;
 	}
 	
 	@Override
-	public StockExchangeDTO findById(String id) 
+	public StockExchange findById(String id) 
 	{
 		Optional<StockExchange> stockExchange = stockExchangeRepository.findById(id);
 		if(!stockExchange.isPresent())
 			return null;
-		return stockExchangeMapper.toStockExchangeDto(stockExchange.get());
+		return stockExchange.orElse(null);
 	}
 	
 	@Override
-	public StockExchangeDTO addStockExchange(StockExchangeDTO stockExchangeDTO) 
+	public StockExchange addStockExchange(StockExchange stockExchange) 
 	{
-		StockExchange stockExchange = stockExchangeMapper.toStockExchange(stockExchangeDTO);
 		stockExchange = stockExchangeRepository.save(stockExchange);
-		return stockExchangeMapper.toStockExchangeDto(stockExchange);
+		return stockExchange;
 	}
-
 	@Override
-	public StockExchangeDTO editStockExchange(StockExchangeDTO stockExchangeDTO) 
+	public StockExchange editStockExchange(StockExchange stockExchange) 
 	{
-		if(findById(stockExchangeDTO.getId()) == null)
+		if(findById(stockExchange.getId()) == null)
 			return null;
-		StockExchange stockExchange = stockExchangeMapper.toStockExchange(stockExchangeDTO);
 		stockExchange = stockExchangeRepository.save(stockExchange);
-		return stockExchangeMapper.toStockExchangeDto(stockExchange);
+		return stockExchange;
 	}
 
 	@Override
 	public void deleteStockExchange(String id) {
-		// TODO Auto-generated method stub
-		
+		stockExchangeRepository.deleteById(id);
 	}
 
 	@Override
-	public List<CompanyDTO> getCompanies(String id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public List<Company> getCompanies(String id) {
+		Optional<StockExchange> stockExchange = stockExchangeRepository.findById(id);
+		if(!stockExchange.isPresent())
+			return null;
+		return stockExchange.get().getCompanies();
+			}
 
 	@Override
-	public StockExchangeDTO addCompanyToStockExchange(String stockExchangeName, CompanyDTO companyDTO) {
-		// TODO Auto-generated method stub
-		return null;
+	public StockExchange addCompanyToStockExchange(String exchangeId, Company company) {
+		Optional<StockExchange> stockExchange = stockExchangeRepository.findById(exchangeId);
+		if(stockExchange == null)
+			return null;
+		stockExchange.get().getCompanies().add(company);
+		StockExchange stockExchangeUpdated = stockExchangeRepository.save(stockExchange.get());
+		return stockExchangeUpdated;
 	}
+
 }

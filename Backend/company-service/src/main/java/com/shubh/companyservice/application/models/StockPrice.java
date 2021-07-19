@@ -1,6 +1,7 @@
 package com.shubh.companyservice.application.models;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.AllArgsConstructor;
@@ -15,7 +16,8 @@ public class StockPrice
 {
 	@Id
 	private String id;
-	private String companyCode;
+	@DBRef
+	private Company company;
 	private String stockExchangeName;
 	private double price;
 	private String date;

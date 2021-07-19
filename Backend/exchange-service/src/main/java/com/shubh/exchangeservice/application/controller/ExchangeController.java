@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.shubh.exchangeservice.application.dto.CompanyDTO;
-import com.shubh.exchangeservice.application.dto.StockExchangeDTO;
+import com.shubh.exchangeservice.application.models.Company;
+import com.shubh.exchangeservice.application.models.StockExchange;
 import com.shubh.exchangeservice.application.services.ExchangeService;
 
 @RestController
@@ -25,34 +25,56 @@ public class ExchangeController
 	private ExchangeService exchangeService;
 	
 	@GetMapping(path = "")
-	public ResponseEntity<List<StockExchangeDTO>> getStockExchangesList() {
+	public ResponseEntity<List<StockExchange>> getStockExchangesList() {
 		return ResponseEntity.ok(exchangeService.getStockExchangesList());
 	}
 	
 	@GetMapping(path = "/{id}")
-	public ResponseEntity<StockExchangeDTO> getStockExchangeDetails(@PathVariable String id) throws Exception
+	public ResponseEntity<StockExchange> getStockExchangeDetails(@PathVariable String id) throws Exception
 	{
-		StockExchangeDTO stockExchangeDto = exchangeService.findById(id);
-		if(stockExchangeDto == null) {
+		StockExchange stockExchange = exchangeService.findById(id);
+		if(stockExchange == null) {
 			throw new Exception("Stock Exchange Not Found for id : " + id);
 		}
-		return ResponseEntity.ok(stockExchangeDto);
+		return ResponseEntity.ok(stockExchange);
 	}
 	
 	@PostMapping(path = "")
-	public ResponseEntity<StockExchangeDTO> addStockExchange(@RequestBody StockExchangeDTO stockExchangeDto) {
-		return ResponseEntity.ok(exchangeService.addStockExchange(stockExchangeDto));
+	public ResponseEntity<StockExchange> addStockExchange(@RequestBody StockExchange stockExchange) {
+		return ResponseEntity.ok(exchangeService.addStockExchange(stockExchange));
 	}
 	
 	@PutMapping(path = "")
-	public ResponseEntity<StockExchangeDTO> editStockExchange(@RequestBody StockExchangeDTO stockExchangeDto)
+	public ResponseEntity<StockExchange> editStockExchange(@RequestBody StockExchange stockExchange)
 			throws Exception 
 	{
-		StockExchangeDTO updatedStockExchangeDto = exchangeService.editStockExchange(stockExchangeDto);
-		if(updatedStockExchangeDto == null) {
-			throw new Exception("Stock Exchange Not Found for id : " + stockExchangeDto.getId());
+		StockExchange updatedStockExchange = exchangeService.editStockExchange(stockExchange);
+		if(updatedStockExchange == null) {
+			throw new Exception("Stock Exchange Not Found for id : " + stockExchange.getId());
 		}
-		return ResponseEntity.ok(updatedStockExchangeDto);
+		return ResponseEntity.ok(updatedStockExchange);
+	}
+	@DeleteMapping(path="/{id}")
+	public void deleteStockExchange(@PathVariable String id) throws Exception{
+			exchangeService.deleteStockExchange(id);
+	}
+	
+	@GetMapping(path="/{id}/companies")
+	public ResponseEntity<List<Company>> getCompanies(@PathVariable String id) throws Exception{
+		List<Company> companies = exchangeService.getCompanies(id);
+		if(companies==null)
+			throw new Exception("Stock Exchange Not Found for Id "+id);
+		return ResponseEntity.ok(companies);
+	}
+	
+	@PostMapping(path="/{exchangeId}/addCompany")
+	public ResponseEntity<StockExchange> addCompanyToExchange(@PathVariable String exchangeId, @RequestBody Company company) throws Exception{
+		StockExchange stockExchange = exchangeService.addCompanyToStockExchange(exchangeId, company);
+		if(stockExchange==null) {
+			throw new Exception("Stock Exchange not found for Id: "+exchangeId);
+		}
+		
+		return ResponseEntity.ok(stockExchange);
 	}
 	
 }

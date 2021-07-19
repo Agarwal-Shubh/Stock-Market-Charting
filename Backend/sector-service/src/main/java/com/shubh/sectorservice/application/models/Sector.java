@@ -1,13 +1,13 @@
-package com.shubh.exchangeservice.application.dto;
+package com.shubh.sectorservice.application.models;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import com.shubh.exchangeservice.application.models.Sector;
+import com.mongodb.lang.NonNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,12 +16,18 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CompanyDTO {
+@Document
+public class Sector 
+{
+	@Id
+	private String id;
 	
-	private UUID _id;
+	@NonNull
 	private String name;
-	private double turnover;
-	private String ceo;
-	private List<String> bod;
-	private String description;
+	
+	@NonNull
+	private String brief;
+	
+	@DBRef
+	private List<Company> companies = new ArrayList<>();
 }

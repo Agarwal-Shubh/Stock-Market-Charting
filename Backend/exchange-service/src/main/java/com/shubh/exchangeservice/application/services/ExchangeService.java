@@ -2,16 +2,16 @@ package com.shubh.exchangeservice.application.services;
 
 import java.util.List;
 
-import com.shubh.exchangeservice.application.dto.CompanyDTO;
-import com.shubh.exchangeservice.application.dto.StockExchangeDTO;
+import com.shubh.exchangeservice.application.models.Company;
+import com.shubh.exchangeservice.application.models.StockExchange;
 
 public interface ExchangeService {
 	
-	public List<StockExchangeDTO> getStockExchangesList();
-	public StockExchangeDTO findById(String id);
-	public StockExchangeDTO addStockExchange(StockExchangeDTO stockExchangeDTO);
-	public StockExchangeDTO editStockExchange(StockExchangeDTO stockExchangeDTO);
+	public List<StockExchange> getStockExchangesList();
+	public StockExchange findById(String id);
+	public StockExchange addStockExchange(StockExchange StockExchange);
+	public StockExchange editStockExchange(StockExchange StockExchange);
 	public void deleteStockExchange(String id);
-	public List<CompanyDTO> getCompanies(String id);
-	public StockExchangeDTO addCompanyToStockExchange(String stockExchangeName, CompanyDTO companyDTO);
+	public List<Company> getCompanies(String id);
+	public StockExchange addCompanyToStockExchange(String stockExchangeName, Company company);
 }
