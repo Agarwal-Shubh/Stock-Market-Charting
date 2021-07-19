@@ -19,11 +19,18 @@ public class Company
 {
 	@Id
 	private String id;
-	private String name;
-	private String turnover;
-	private String ceo;
-	private List<String> boardOfDirectors;
-	private String sectorId;
-	private String description;
 
+	private String name;
+	private double turnover;
+	private String ceo;
+	private List<String> bod;
+	private String description;
+	private String sectorName;
+	private List<String> exchangeNames;
+	
+	@DBRef
+	private List<Ipo> ipos = new ArrayList<>();
+
+	@DBRef
+	private List<StockPrice> stockPrices = new ArrayList<>();
 }

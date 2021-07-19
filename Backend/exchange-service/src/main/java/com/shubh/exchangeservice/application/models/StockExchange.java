@@ -2,13 +2,14 @@ package com.shubh.exchangeservice.application.models;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
-import org.bson.types.ObjectId;
-import org.springframework.data.annotation.*;
-import org.springframework.data.mongodb.core.mapping.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
@@ -16,15 +17,18 @@ import lombok.*;
 @Document(collection="StockExchange")
 public class StockExchange {
 	@Id
-	private UUID _id;
+	private String id;
 	
-	private String Name;
+	private String name;
 	
 	private String brief;
 	
 	private String remarks;
 	
 	@DBRef
-	private List<Address> address = new ArrayList<>();
+	private List<Company> companies = new ArrayList<>();
+	
+	@DBRef
+	private List<Address> address = new ArrayList<>();	
 	
 }

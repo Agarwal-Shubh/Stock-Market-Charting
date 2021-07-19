@@ -1,47 +1,101 @@
 package com.shubh.companyservice.application.services.Impl;
 
-import org.springframework.beans.factory.annotation.*;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.shubh.companyservice.application.dao.*;
-import com.shubh.companyservice.application.dto.*;
-import com.shubh.companyservice.application.mapper.*;
-import com.shubh.companyservice.application.models.*;
+import com.shubh.companyservice.application.dao.CompanyRepository;
+import com.shubh.companyservice.application.feignclient.ExchangeClient;
+import com.shubh.companyservice.application.feignclient.SectorClient;
+import com.shubh.companyservice.application.models.Company;
+import com.shubh.companyservice.application.models.Ipo;
+import com.shubh.companyservice.application.models.StockPrice;
 import com.shubh.companyservice.application.services.CompanyService;
-
-import java.util.*;
 
 @Service
 public class CompanyServiceImpl implements CompanyService {
 	@Autowired
 	private CompanyRepository companyRepository;
-
+	
 	@Autowired
-	private CompanyMapper companyMapper;
-
+	private SectorClient sectorClient;
+	
 	@Autowired
-	private IpoMapper ipoMapper;
+	private ExchangeClient exchangeClient;
 
-	@Autowired
-	private StockPriceMapper stockPriceMapper;
 	
 	@Override
-	public List<CompanyDTO> getCompanies() 
+	public List<Company> getCompanies() 
 	{
 		List<Company> companies = companyRepository.findAll();
 		if(companies.isEmpty())
 			return null;
 		else
-			return companyMapper.mapToCompanyDTOs(companies);
+			return companies;
 	}
 	
 	@Override
-	public CompanyDTO addCompany(CompanyDTO companyDto) 
+	public Company addCompany(Company Company) 
 	{
-		Company company = companyMapper.mapToCompany(companyDto);
-		company = companyRepository.save(company);
-		companyDto = companyMapper.mapToCompanyDTO(company);
-		return companyDto;
+		Company = companyRepository.save(Company);
+
+		sectorClient.addCompanyToSector(Company.getSectorName(), Company);
+		List<String> stockExchangeNames = Company.getExchangeNames();
+		for(String exchange: stockExchangeNames) {
+			exchangeClient.addCompanyToStockExchange(exchange, Company);
+		}
+		return Company;
+	}
+
+	@Override
+	public Company findById(String id) {
+		Optional<Company> company = companyRepository.findById(id);
+		if(!company.isPresent())
+			return null;
+		return company.get();
+	}
+
+	@Override
+	public List<Company> getMatchingCompanies(String pattern) {
+		List<Company> companies = companyRepository.findByNameIgnoreCaseContaining(pattern);
+		return companies;
+	}
+
+	@Override
+	public Company editCompany(Company Company) {
+		Company = companyRepository.save(Company);
+		return Company;
+	}
+
+	@Override
+	public void deleteCompany(String id) {
+		companyRepository.deleteById(id);
+	}
+
+	@Override
+	public Company addIpoToCompany(String companyName, Ipo Ipo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Ipo> getCompanyIpoDetails(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Company addStockPriceToCompany(String companyCode, StockPrice stockPrice) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<StockPrice> getStockPrices(String companyName) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

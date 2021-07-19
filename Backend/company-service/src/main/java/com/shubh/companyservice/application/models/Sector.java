@@ -1,6 +1,7 @@
 package com.shubh.companyservice.application.models;
 
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -13,16 +14,15 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(collection="Ipo")
-public class Ipo 
-{
+@Document(collection="Sector")
+public class Sector {
 	@Id
 	private String id;
+	
+	private String name;
+	
+	private String brief;
+	
 	@DBRef
-	private Company company;
-	private String stockExchangeName;
-	private double pricePerShare;
-	private int shares;
-	private Date openDateTime;
-	private String remarks;
+	private List<Company> companies = new ArrayList<>();
 }
