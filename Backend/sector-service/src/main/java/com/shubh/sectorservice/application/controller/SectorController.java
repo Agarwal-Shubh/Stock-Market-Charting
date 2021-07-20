@@ -31,10 +31,10 @@ public class SectorController {
 	}
 	
 	@GetMapping(path="/{id}")
-	public ResponseEntity<Sector> getSectorById(@PathVariable String id) throws Exception{
+	public ResponseEntity<Sector> getSectorById(@PathVariable String id){
 		Sector sector = sectorService.findById(id);
 		if(sector == null) {
-			throw new Exception("Sector not found for id : " + id);
+			throw new RuntimeException("Sector not found for id : " + id);
 		}
 		return ResponseEntity.ok(sector);
 	}
@@ -48,11 +48,10 @@ public class SectorController {
 	
 	@PutMapping(path = "")
 	public ResponseEntity<Sector> updateSector(@RequestBody Sector Sector)
-			throws Exception
 	{
 		Sector updatedSector = sectorService.save(Sector);
 		if(updatedSector == null) {
-			throw new Exception("Sector not found for id : " + Sector.getId());
+			throw new RuntimeException("Sector not found for id : " + Sector.getId());
 		}
 		return ResponseEntity.ok(updatedSector);
 	}
@@ -64,11 +63,10 @@ public class SectorController {
 	
 	@GetMapping(path = "/{id}/companies")
 	public ResponseEntity<List<Company>> getCompanies(@PathVariable String id)
-			throws Exception 
 	{
 		List<Company> companies = sectorService.getCompanies(id);
 		if(companies == null) {
-			throw new Exception("Sector not found for id : " + id);
+			throw new RuntimeException("Sector not found for id : " + id);
 		}
 		return ResponseEntity.ok(companies);
 	}
@@ -76,11 +74,10 @@ public class SectorController {
 
 	@PostMapping(path = "/{sectorName}/companies")
 	public void addCompanyToSector(@PathVariable String sectorName, @RequestBody Company company)
-			throws Exception 
 	{
 		Sector Sector = sectorService.addCompanyToSector(sectorName, company);
 		if(Sector == null) {
-			throw new Exception("Sector not found with name : " + sectorName);
+			throw new RuntimeException("Sector not found with name : " + sectorName);
 		}
 	}	
 	

@@ -76,26 +76,40 @@ public class CompanyServiceImpl implements CompanyService {
 
 	@Override
 	public Company addIpoToCompany(String companyName, Ipo Ipo) {
-		// TODO Auto-generated method stub
-		return null;
+		Company company = companyRepository.findByName(companyName);
+		if(company==null)
+			return null;
+		company.getIpos().add(Ipo);
+		company = companyRepository.save(company);
+		
+		return company;
 	}
 
 	@Override
 	public List<Ipo> getCompanyIpoDetails(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<Company> company = companyRepository.findById(id);
+		if(!company.isPresent())
+			return null;
+		return company.get().getIpos();		
 	}
 
 	@Override
 	public Company addStockPriceToCompany(String companyCode, StockPrice stockPrice) {
-		// TODO Auto-generated method stub
-		return null;
+		Company company = companyRepository.findByCode(companyCode);
+		if(company==null)
+			return null;
+		company.getStockPrices().add(stockPrice);
+		company = companyRepository.save(company);
+		
+		return company;
 	}
 
 	@Override
-	public List<StockPrice> getStockPrices(String companyName) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<StockPrice> getStockPrices(String id) {
+		Optional<Company> company = companyRepository.findById(id);
+		if(!company.isPresent())
+			return null;
+		return company.get().getStockPrices();	
 	}
 
 }

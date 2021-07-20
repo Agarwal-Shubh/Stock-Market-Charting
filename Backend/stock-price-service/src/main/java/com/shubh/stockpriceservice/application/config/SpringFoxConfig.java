@@ -1,4 +1,4 @@
-package com.shubh.companyservice.application.config;
+package com.shubh.stockpriceservice.application.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,8 +28,8 @@ public class SpringFoxConfig {
 	    private ApiInfo apiInfo() 
 	    {
 	        return new ApiInfoBuilder()
-	        		.title("Company Rest APIs")
-	                .description("API reference for Company Service")
+	        		.title("Stock Price Rest APIs")
+	                .description("API reference for Stock Price Service")
 	                .version("1.0")
 	                .build();
 	    }

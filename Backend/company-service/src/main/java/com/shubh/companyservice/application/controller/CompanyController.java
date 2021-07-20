@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.shubh.companyservice.application.dao.CompanyRepository;
 import com.shubh.companyservice.application.models.Company;
+import com.shubh.companyservice.application.models.Ipo;
+import com.shubh.companyservice.application.models.StockPrice;
 import com.shubh.companyservice.application.services.CompanyService;
 @RestController
 @RequestMapping("/companies")
@@ -52,4 +54,37 @@ public class CompanyController {
 	public void removeCompany(@PathVariable String id) {
 		companyService.deleteCompany(id);
 	}
+	
+	@GetMapping(path="/{id}/ipos")
+	public ResponseEntity<List<Ipo>> getCompanyIpo(@PathVariable String id){
+		List<Ipo> ipoList = companyService.getCompanyIpoDetails(id);
+		if(ipoList == null)
+			throw new RuntimeException("Company Not Found for the Id " +id);
+		
+		return ResponseEntity.ok(ipoList);
+	}
+	
+	@GetMapping(path="/{id}/stockPrices")
+	public ResponseEntity<List<StockPrice>> getCompanyStockPrices(@PathVariable String id){
+		List<StockPrice> stockPrices = companyService.getStockPrices(id);
+		if(stockPrices == null)
+			throw new RuntimeException("Company Not Found for the Id " +id);
+		
+		return ResponseEntity.ok(stockPrices);
+	}
+	
+	@PostMapping(path="/{companyName}/ipo")
+	public void addIpoToCompany(@PathVariable String companyName, @RequestBody Ipo ipo) {
+		Company company = companyService.addIpoToCompany(companyName, ipo);
+		if(company == null)
+			throw new RuntimeException("Company Not Found for the Company Name "+companyName);
+	}
+	
+	@PostMapping(path="/{companyCode}/stockPrice")
+	public void addStockPriceToCompany(@PathVariable String companyCode, @RequestBody StockPrice stockPrice){
+		Company company = companyService.addStockPriceToCompany(companyCode, stockPrice);
+		if(company == null)
+			throw new RuntimeException("Company Not Found for the Company Code "+companyCode);
+	}
+	
 }

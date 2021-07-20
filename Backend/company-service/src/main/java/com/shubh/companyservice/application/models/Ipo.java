@@ -18,8 +18,7 @@ public class Ipo
 {
 	@Id
 	private String id;
-	@DBRef
-	private Company company;
+	private String companyName;
 	private String stockExchangeName;
 	private double pricePerShare;
 	private int shares;

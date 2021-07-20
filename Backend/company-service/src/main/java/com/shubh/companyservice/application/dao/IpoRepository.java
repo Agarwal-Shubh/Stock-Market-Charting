@@ -10,6 +10,5 @@ import com.shubh.companyservice.application.models.*;
 @Repository
 public interface IpoRepository extends MongoRepository<Ipo, String>
 {
-	public Optional<Ipo> findById(String id);
-	public void deleteById(String id);
+	
 }
