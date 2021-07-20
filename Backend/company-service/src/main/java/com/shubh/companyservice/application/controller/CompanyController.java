@@ -56,35 +56,35 @@ public class CompanyController {
 	}
 	
 	@GetMapping(path="/{id}/ipos")
-	public ResponseEntity<List<Ipo>> getCompanyIpo(@PathVariable String id) throws Exception{
+	public ResponseEntity<List<Ipo>> getCompanyIpo(@PathVariable String id){
 		List<Ipo> ipo = companyService.getCompanyIpoDetails(id);
 		if(ipo == null)
-			throw new Exception("Company Not Found for the Id " +id);
+			throw new RuntimeException("Company Not Found for the Id " +id);
 		
 		return ResponseEntity.ok(ipo);
 	}
 	
 	@GetMapping(path="/{id}/stockPrices")
-	public ResponseEntity<List<StockPrice>> getCompanyStockPrices(@PathVariable String id) throws Exception{
+	public ResponseEntity<List<StockPrice>> getCompanyStockPrices(@PathVariable String id){
 		List<StockPrice> stockPrices = companyService.getStockPrices(id);
 		if(stockPrices == null)
-			throw new Exception("Company Not Found for the Id " +id);
+			throw new RuntimeException("Company Not Found for the Id " +id);
 		
 		return ResponseEntity.ok(stockPrices);
 	}
 	
 	@PostMapping(path="/{companyName}/ipo")
-	public void addIpoToCompany(@PathVariable String companyName, @RequestBody Ipo ipo) throws Exception{
+	public void addIpoToCompany(@PathVariable String companyName, @RequestBody Ipo ipo) {
 		Company company = companyService.addIpoToCompany(companyName, ipo);
 		if(company == null)
-			throw new Exception("Company Not Found for the Company Name "+companyName);
+			throw new RuntimeException("Company Not Found for the Company Name "+companyName);
 	}
 	
 	@PostMapping(path="/{companyCode}/stockPrice")
-	public void addStockPriceToCompany(@PathVariable String companyCode, @RequestBody StockPrice stockPrice) throws Exception{
+	public void addStockPriceToCompany(@PathVariable String companyCode, @RequestBody StockPrice stockPrice){
 		Company company = companyService.addStockPriceToCompany(companyCode, stockPrice);
 		if(company == null)
-			throw new Exception("Company Not Found for the Company Code "+companyCode);
+			throw new RuntimeException("Company Not Found for the Company Code "+companyCode);
 	}
 	
 }

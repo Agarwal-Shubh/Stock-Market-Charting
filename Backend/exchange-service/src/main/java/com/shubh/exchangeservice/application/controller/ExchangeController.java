@@ -30,11 +30,11 @@ public class ExchangeController
 	}
 	
 	@GetMapping(path = "/{id}")
-	public ResponseEntity<StockExchange> getStockExchangeDetails(@PathVariable String id) throws Exception
+	public ResponseEntity<StockExchange> getStockExchangeDetails(@PathVariable String id)
 	{
 		StockExchange stockExchange = exchangeService.findById(id);
 		if(stockExchange == null) {
-			throw new Exception("Stock Exchange Not Found for id : " + id);
+			throw new RuntimeException("Stock Exchange Not Found for id : " + id);
 		}
 		return ResponseEntity.ok(stockExchange);
 	}
@@ -46,32 +46,32 @@ public class ExchangeController
 	
 	@PutMapping(path = "")
 	public ResponseEntity<StockExchange> editStockExchange(@RequestBody StockExchange stockExchange)
-			throws Exception 
+ 
 	{
 		StockExchange updatedStockExchange = exchangeService.editStockExchange(stockExchange);
 		if(updatedStockExchange == null) {
-			throw new Exception("Stock Exchange Not Found for id : " + stockExchange.getId());
+			throw new RuntimeException("Stock Exchange Not Found for id : " + stockExchange.getId());
 		}
 		return ResponseEntity.ok(updatedStockExchange);
 	}
 	@DeleteMapping(path="/{id}")
-	public void deleteStockExchange(@PathVariable String id) throws Exception{
+	public void deleteStockExchange(@PathVariable String id){
 			exchangeService.deleteStockExchange(id);
 	}
 	
 	@GetMapping(path="/{id}/companies")
-	public ResponseEntity<List<Company>> getCompanies(@PathVariable String id) throws Exception{
+	public ResponseEntity<List<Company>> getCompanies(@PathVariable String id){
 		List<Company> companies = exchangeService.getCompanies(id);
 		if(companies==null)
-			throw new Exception("Stock Exchange Not Found for Id "+id);
+			throw new RuntimeException("Stock Exchange Not Found for Id "+id);
 		return ResponseEntity.ok(companies);
 	}
 	
 	@PostMapping(path="/{exchangeName}/addCompany")
-	public ResponseEntity<StockExchange> addCompanyToExchange(@PathVariable String exchangeName, @RequestBody Company company) throws Exception{
+	public ResponseEntity<StockExchange> addCompanyToExchange(@PathVariable String exchangeName, @RequestBody Company company){
 		StockExchange stockExchange = exchangeService.addCompanyToStockExchange(exchangeName, company);
 		if(stockExchange==null) {
-			throw new Exception("Stock Exchange not found for : "+exchangeName);
+			throw new RuntimeException("Stock Exchange not found for : "+exchangeName);
 		}
 		
 		return ResponseEntity.ok(stockExchange);

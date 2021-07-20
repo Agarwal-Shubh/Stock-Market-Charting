@@ -28,8 +28,8 @@ public class SpringFoxConfig {
 	    private ApiInfo apiInfo() 
 	    {
 	        return new ApiInfoBuilder()
-	        		.title("Stock Exchange Rest APIs")
-	                .description("API reference for Sector Service")
+	        		.title("Company Rest APIs")
+	                .description("API reference for Company Service")
 	                .version("1.0")
 	                .build();
 	    }

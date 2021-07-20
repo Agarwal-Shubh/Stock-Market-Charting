@@ -30,21 +30,21 @@ public class IpoController {
 	}
 	
 	@GetMapping(path = "/{id}")
-	public ResponseEntity<Ipo> findById(@PathVariable String id)throws Exception
+	public ResponseEntity<Ipo> findById(@PathVariable String id)
 	{
 		Ipo Ipo = ipoService.findById(id);
 		if(Ipo == null) {
-			throw new Exception("Ipo not found for id : " + id);
+			throw new RuntimeException("Ipo not found for id : " + id);
 		}
 		return ResponseEntity.ok(Ipo);
 	}
 	
 	@PostMapping(path = "")
-	public ResponseEntity<Ipo> save(@RequestBody Ipo Ipo)throws Exception
+	public ResponseEntity<Ipo> save(@RequestBody Ipo Ipo)
 	{
 		Ipo addedIpo = ipoService.save(Ipo);
 		if(addedIpo == null) {
-			throw new Exception("Company not found with name : " + Ipo.getCompanyName());
+			throw new RuntimeException("Company not found with name : " + Ipo.getCompanyName());
 		}
 		return ResponseEntity
 				.status(HttpStatus.CREATED)
@@ -53,11 +53,10 @@ public class IpoController {
 	
 	@PutMapping(path = "")
 	public ResponseEntity<Ipo> update(@RequestBody Ipo Ipo)
-			throws Exception
 	{
 		Ipo updatedIpo = ipoService.update(Ipo);
 		if(updatedIpo == null) {
-			throw new Exception("Ipo not found for id : " + Ipo.getId());
+			throw new RuntimeException("Ipo not found for id : " + Ipo.getId());
 		}
 		return ResponseEntity.ok(updatedIpo);
 	}

@@ -1,5 +1,6 @@
 package com.shubh.stockpriceservice.application.services;
 
+import java.text.ParseException;
 import java.util.List;
 
 import com.shubh.stockpriceservice.application.models.CompanyCompareRequest;
@@ -12,6 +13,6 @@ public interface StockPriceServices {
 	public void deleteById(String id);
 	public List<StockPrice> save(List<StockPrice> stockPrices);
 	public StockPrice update(StockPrice stockPrice);
-	public List<StockPrice> getStockPricesForCompanyComparison(CompanyCompareRequest compareRequest)throws Exception;
-	public List<StockPrice> getStockPricesForSectorComparison(SectorCompareRequest compareRequest)throws Exception;
+	public List<StockPrice> getStockPricesForCompanyComparison(CompanyCompareRequest compareRequest)throws ParseException;
+	public List<StockPrice> getStockPricesForSectorComparison(SectorCompareRequest compareRequest)throws ParseException;
 }
