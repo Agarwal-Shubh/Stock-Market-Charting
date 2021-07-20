@@ -57,11 +57,11 @@ public class CompanyController {
 	
 	@GetMapping(path="/{id}/ipos")
 	public ResponseEntity<List<Ipo>> getCompanyIpo(@PathVariable String id){
-		List<Ipo> ipo = companyService.getCompanyIpoDetails(id);
-		if(ipo == null)
+		List<Ipo> ipoList = companyService.getCompanyIpoDetails(id);
+		if(ipoList == null)
 			throw new RuntimeException("Company Not Found for the Id " +id);
 		
-		return ResponseEntity.ok(ipo);
+		return ResponseEntity.ok(ipoList);
 	}
 	
 	@GetMapping(path="/{id}/stockPrices")
