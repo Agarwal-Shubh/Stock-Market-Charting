@@ -1,0 +1,3 @@
+export const IPO_LIST_REQUEST = 'IPO_LIST_REQUEST';
+export const IPO_LIST_SUCCESS = 'IPO_LIST_SUCCESS';
+export const IPO_LIST_FAIL = 'IPO_LIST_FAIL';

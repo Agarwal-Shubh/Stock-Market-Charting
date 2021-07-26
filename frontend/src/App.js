@@ -1,23 +1,17 @@
-import logo from './logo.svg';
+import { useSelector } from 'react-redux';
+import { useRoutes } from 'react-router';
 import './App.css';
+import Header from './components/Header/Header';
+import routes from './routes';
 
 function App() {
+  const userSignin = useSelector((state) => state.userSignin);
+  const { userInfo } = userSignin;
+  let routing = useRoutes(routes(userInfo));
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+    {routing}
     </div>
   );
 }
