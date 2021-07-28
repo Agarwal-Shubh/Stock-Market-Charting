@@ -44,7 +44,7 @@ function IpoList() {
         <div style={{'backgroundColor':'#fcfcfc'}}>
             <Grid container>
                 <Grid item xs={12} sm={5}>
-                    <AdminMenu ipoMenuActive={true} expanded="panel3" viewIpoActive={true}/>
+                    <AdminMenu ipoMenuActive={true} expanded="panel3" viewIPOActive={true}/>
                 </Grid>
                 <Grid item xs={12} sm={6}>
                     <div className={classes.container}>
