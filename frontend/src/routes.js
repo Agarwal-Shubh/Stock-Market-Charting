@@ -2,13 +2,16 @@ import React from 'react';
 import { Navigate } from 'react-router-dom';
 import AddCompany from './screens/Admin/AddCompany';
 import AddExchange from './screens/Admin/AddExchange';
+import AddIpo from './screens/Admin/AddIpo';
 import AddSector from './screens/Admin/AddSector';
+import AddStockPrice from './screens/Admin/AddStockPrice';
 import CompanyList from './screens/Admin/CompanyListing';
 import ExchangeList from './screens/Admin/ExchangeList';
 import IpoList from './screens/Admin/IpoList';
 import SectorList from './screens/Admin/SectorList';
 import ViewCompany from './screens/Admin/ViewCompany';
 import ViewExchange from './screens/Admin/ViewExchange';
+import ViewIpo from './screens/Admin/ViewIpo';
 import ViewSector from './screens/Admin/ViewSector';
 import CompanyListing from './screens/CompanyListing';
 import ExchangeListing from './screens/ExchangeListing';
@@ -102,6 +105,18 @@ let routes = (userInfo)=>[
     {
         path:'/admin/ipos',
         element:<IpoList />
+    },
+    {
+        path:'/admin/ViewIpo/:id',
+        element:<ViewIpo />
+    },
+    {
+        path:'/admin/addIpo',
+        element:<AddIpo />
+    },
+    {
+        path:'/admin/addStockPrice',
+        element:<AddStockPrice />
     },
     {
       path: '*',

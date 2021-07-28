@@ -2,7 +2,7 @@ import { createStore, compose, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 import { companyAddReducer, companyDeleteReducer, companyEditReducer, companyListReducer } from './redux/reducers/companyReducers';
 import { exchangeAddReducer, exchangeDeleteReducer, exchangeEditReducer, exchangeListReducer } from './redux/reducers/exchangeReducers';
-import { ipoListReducer } from './redux/reducers/ipoReducers';
+import { ipoAddReducer, ipoDeleteReducer, ipoEditReducer, ipoListReducer } from './redux/reducers/ipoReducers';
 import { sectorAddReducer, sectorDeleteReducer, sectorEditReducer, sectorListReducer } from './redux/reducers/sectorReducers';
 import { userRegisterReducer, userSigninReducer, userVerifyReducer } from './redux/reducers/userReducers';
 
@@ -45,6 +45,9 @@ const reducer = combineReducers({
     addSector:sectorAddReducer,
     editSector:sectorEditReducer,
     deleteSector:sectorDeleteReducer,
+    addIpo:ipoAddReducer,
+    editIpo:ipoEditReducer,
+    deleteIpo:ipoDeleteReducer,
 });
 
 
