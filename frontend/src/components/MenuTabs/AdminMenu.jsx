@@ -192,7 +192,7 @@ function AdminMenu(props) {
         </AccordionSummary>
         <AccordionDetails>
         <div className={classes.Container}>
-        <Typography variant="button" onClick={handleViewSectors} className={classes.buttonFont} style={ props.viewSectorsActive ? {'color':'#3b4c58',opacity:1 } : {}}>List of Sectors</Typography>
+        <Typography variant="button" onClick={handleViewSectors} className={classes.buttonFont} style={ props.viewSectorActive ? {'color':'#3b4c58',opacity:1 } : {}}>List of Sectors</Typography>
             <hr className={classes.lineStyle} />
             <Typography variant="button" onClick={handleAddSectors} className={classes.buttonFont} style={ props.addSectorActive ? {'color':'#3b4c58',opacity:1  } : {}}>Add Sectors</Typography>
             <hr className={classes.lineStyle} />
