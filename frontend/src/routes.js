@@ -68,55 +68,55 @@ let routes = (userInfo)=>[
     },
     {
         path:'/admin/companies',
-        element:<CompanyList />
+        element:userInfo && userInfo.admin?<CompanyList />:<Navigate to='404' />
     },
     {
         path:'/admin/addCompany',
-        element:<AddCompany />
+        element: userInfo && userInfo.admin?<AddCompany />:<Navigate to='404' />
     },
     {
         path:'/admin/viewCompany/:id',
-        element:<ViewCompany />
+        element: userInfo && userInfo.admin?<ViewCompany />:<Navigate to='404' />
     },
     {
         path:'/admin/exchanges',
-        element:<ExchangeList />
+        element:userInfo && userInfo.admin?<ExchangeList />:<Navigate to='404' />
     },
     {
         path:'/admin/addExchange',
-        element:<AddExchange />
+        element:userInfo && userInfo.admin?<AddExchange />:<Navigate to='404' />
     },
     {
         path:'/admin/viewExchange/:id',
-        element:<ViewExchange />
+        element:userInfo && userInfo.admin?<ViewExchange />:<Navigate to='404' />
     },
     {
         path:'/admin/sectors',
-        element:<SectorList />
+        element:userInfo && userInfo.admin?<SectorList />:<Navigate to='404' />
     },
     {
         path:'/admin/addSector',
-        element:<AddSector />
+        element:userInfo && userInfo.admin?<AddSector />:<Navigate to='404' />
     },
     {
         path:'/admin/viewSector/:id',
-        element:<ViewSector />
+        element:userInfo && userInfo.admin?<ViewSector />:<Navigate to='404' />
     },
     {
         path:'/admin/ipos',
-        element:<IpoList />
+        element:userInfo && userInfo.admin?<IpoList />:<Navigate to='404' />
     },
     {
         path:'/admin/ViewIpo/:id',
-        element:<ViewIpo />
+        element:userInfo && userInfo.admin?<ViewIpo />:<Navigate to='404' />
     },
     {
         path:'/admin/addIpo',
-        element:<AddIpo />
+        element:userInfo && userInfo.admin?<AddIpo />:<Navigate to='404' />
     },
     {
         path:'/admin/addStockPrice',
-        element:<AddStockPrice />
+        element:userInfo && userInfo.admin?<AddStockPrice />:<Navigate to='404' />
     },
     {
       path: '*',

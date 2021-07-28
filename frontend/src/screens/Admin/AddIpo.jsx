@@ -41,7 +41,7 @@ function AddIpo() {
         <div style={{'backgroundColor':'#fcfcfc'}}>
             <Grid container>
                 <Grid item xs={12} sm={5}>
-                    <AdminMenu ipoMenuActive={true} expanded="panel3" addIpoActive={true}/>
+                    <AdminMenu ipoMenuActive={true} expanded="panel3" addIPOActive={true}/>
                 </Grid>
                 <Grid item xs={12} sm={6}>
                     <Form flag="0" /> 

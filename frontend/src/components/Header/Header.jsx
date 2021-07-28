@@ -103,7 +103,7 @@ function Header(props){
         open={isMenuOpen}
         onClose={handleMenuClose}
       >
-        <MenuItem onClick={handleAdminClick}>Admin Panel</MenuItem>
+      {userInfo && userInfo.admin ? <MenuItem onClick={handleAdminClick}>Admin Panel</MenuItem> :''}  
         <MenuItem>My Account</MenuItem>
         <MenuItem onClick={handleSignOut}>Logout</MenuItem>
 
